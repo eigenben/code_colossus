@@ -1,16 +1,28 @@
 Code Colossus
 =============
 
-Simple Middleman blog for Code Colossus (Software Development/Tech).
+Personal tech blog built with [Astro](https://astro.build).
 
 ## Setup
 
-* Configure a config/deploy.yml from config/deploy.yml.sample
+```bash
+npm install
+```
 
-## Deploying
+## Development
 
-Hosting is handled by dokku as a static site with the [buildpack-nginx](https://github.com/dokku/buildpack-nginx) buildpack (specified in `.env`).
+```bash
+npm run dev
+```
 
-Configuration:
+## Build
 
-    NGINX_ROOT=build
+```bash
+npm run build
+```
+
+## Preview
+
+```bash
+npm run preview
+```

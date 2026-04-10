@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPostUrl, sortPostsByDate } from '../utils/posts';
+
+const posts = sortPostsByDate(await getCollection('blog'));
+---
+
+<Base>
+	{posts.map((post) => (
+		<PostCard
+			title={post.data.title}
+			date={post.data.date}
+			href={getPostUrl(post)}
+		/>
+	))}
+</Base>
