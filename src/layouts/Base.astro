@@ -4,13 +4,13 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
 }
 
 const {
-	title = 'Code Colossus: Ben Hughes on Software',
-	description = 'A software development and technology blog by Ben Hughes.',
+  title = 'Code Colossus: Ben Hughes on Software',
+  description = 'A software development and technology blog by Ben Hughes.',
 } = Astro.props;
 
 const siteTitle = 'Code Colossus';
@@ -20,19 +20,19 @@ const pageTitle = title === defaultTitle ? title : `${title} | ${siteTitle}`;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={description} />
-<link rel="alternate" type="application/rss+xml" title={siteTitle} href="/feed.xml" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<title>{pageTitle}</title>
-	</head>
-	<body class="min-h-screen bg-white text-gray-900 antialiased">
-		<Header />
-		<main class="max-w-3xl mx-auto px-6 py-10">
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" title={siteTitle} href="/feed.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <Header />
+    <main class="max-w-3xl mx-auto px-6 py-10">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

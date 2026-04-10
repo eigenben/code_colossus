@@ -8,11 +8,11 @@ const posts = sortPostsByDate(await getCollection('blog'));
 ---
 
 <Base>
-	{posts.map((post) => (
-		<PostCard
-			title={post.data.title}
-			date={post.data.date}
-			href={getPostUrl(post)}
-		/>
-	))}
+  {posts.map((post) => (
+    <PostCard
+      title={post.data.title}
+      date={post.data.date}
+      href={getPostUrl(post)}
+    />
+  ))}
 </Base>

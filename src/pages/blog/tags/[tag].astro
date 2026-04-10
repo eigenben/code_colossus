@@ -5,26 +5,26 @@ import PostCard from '../../../components/PostCard.astro';
 import { getPostUrl, getTagSlug, sortPostsByDate } from '../../../utils/posts';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	const tagMap = new Map<string, typeof posts>();
+  const posts = await getCollection('blog');
+  const tagMap = new Map<string, typeof posts>();
 
-	for (const post of posts) {
-		for (const tag of post.data.tags || []) {
-			const slug = getTagSlug(tag);
-			if (!tagMap.has(slug)) {
-				tagMap.set(slug, []);
-			}
-			tagMap.get(slug)!.push(post);
-		}
-	}
+  for (const post of posts) {
+    for (const tag of post.data.tags || []) {
+      const slug = getTagSlug(tag);
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, []);
+      }
+      tagMap.get(slug)!.push(post);
+    }
+  }
 
-	return Array.from(tagMap.entries()).map(([slug, posts]) => ({
-		params: { tag: slug },
-		props: {
-			tag: posts[0].data.tags!.find((t) => getTagSlug(t) === slug)!,
-			posts,
-		},
-	}));
+  return Array.from(tagMap.entries()).map(([slug, posts]) => ({
+    params: { tag: slug },
+    props: {
+      tag: posts[0].data.tags!.find((t) => getTagSlug(t) === slug)!,
+      posts,
+    },
+  }));
 }
 
 const { tag, posts } = Astro.props;
@@ -32,15 +32,15 @@ const sorted = sortPostsByDate(posts);
 ---
 
 <Base title={`Tag: ${tag}`}>
-	<a href="/" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">
-		&larr; All posts
-	</a>
-	<h1 class="mt-4 text-3xl font-bold text-gray-900 mb-2">Tag: {tag}</h1>
-	{sorted.map((post) => (
-		<PostCard
-			title={post.data.title}
-			date={post.data.date}
-			href={getPostUrl(post)}
-		/>
-	))}
+  <a href="/" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">
+    &larr; All posts
+  </a>
+  <h1 class="mt-4 text-3xl font-bold text-gray-900 mb-2">Tag: {tag}</h1>
+  {sorted.map((post) => (
+    <PostCard
+      title={post.data.title}
+      date={post.data.date}
+      href={getPostUrl(post)}
+    />
+  ))}
 </Base>
